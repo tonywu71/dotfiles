@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# General
+alias fzfbat="fzf --preview 'bat --color=always {}'"
+alias fzfenv="printenv | fzf | cut -d '=' -f 2 | pbcopy"
+alias fzfhist="history | fzf | sed 's/^[0-9]* *//' | pbcopy"
+alias fzfps="ps u | fzf | pbcopy"
+alias show-large-dirs="du -h -d 1 | sort -hr | head -n 10"
+
+# Git
+alias fzfgc="git branch | fzf | xargs git checkout"
+alias fzfgl="git log --oneline | fzf | pbcopy"
+alias glg="git log --oneline --graph --decorate"
+
+# Python
+alias avenv="source .venv/bin/activate"
+alias cvenv="python -m venv .venv"
+alias fzfpip="pip freeze | fzf | pbcopy"
+alias fzfuvpip="uv pip freeze | fzf | pbcopy"
