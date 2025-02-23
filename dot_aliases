@@ -7,6 +7,7 @@ alias fzfhist="history | fzf | sed 's/^[0-9]* *//' | pbcopy"
 alias fzfps="ps u | fzf | pbcopy"
 alias duf="du -sh ./* | sort -hr"
 alias dud="du -h -d 1 | sort -hr"
+alias rsp="rsync -av --progress"
 
 # Git
 alias fzfgc="git branch | fzf | xargs git checkout"
