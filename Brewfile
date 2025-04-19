@@ -1,5 +1,4 @@
 tap "homebrew/autoupdate"
-tap "homebrew/bundle"
 
 brew "age"
 brew "bat"
