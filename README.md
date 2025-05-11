@@ -65,7 +65,6 @@ Override the default settings in `~/.zshrc` with the following snippet to:
 
 ```bash
 # ------------------- oh-my-zsh -------------------
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -81,7 +80,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 13
 
 # Which plugins would you like to load?
-plugins=(git zsh-syntax-highlighting)
+plugins=(git)
 ```
 
 ### Set up other bash plugins
@@ -98,6 +97,7 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # ------------------- zsh-syntax-highlighting -------------------
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 
 # ----------------------------------------------
 ```
