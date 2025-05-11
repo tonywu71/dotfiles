@@ -164,6 +164,14 @@ Host github.com
   IdentityFile ~/.ssh/id_ed25519
 ```
 
+And add the new key to the Apple Keychain (if applicable):
+
+```bash
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+Following this [tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), add the newly created SSH key here: <https://github.com/settings/keys>.
+
 From the Mac App Store, download the following apps using `mas`:
 
 ```bash
