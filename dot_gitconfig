@@ -1,7 +1,7 @@
 [pull]
 	rebase = true
 [user]
-	name = tonywu71
+	name = Tony Wu
 	email = 28306721+tonywu71@users.noreply.github.com
 [lfs]
 	storage = /Users/tony/.cache/git-lfs
