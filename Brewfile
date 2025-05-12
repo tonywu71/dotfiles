@@ -1,6 +1,5 @@
 tap "homebrew/autoupdate"
 
-brew "age"
 brew "bat"
 brew "brew-cask-completion"
 brew "btop"
