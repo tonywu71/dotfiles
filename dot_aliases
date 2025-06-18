@@ -10,6 +10,7 @@ alias dud="du -h -d 1 | sort -hr"
 alias rsp="rsync -av --progress"
 
 # Git
+alias gfp="git fetch -p"
 alias fzfgc="git branch | fzf | xargs git checkout"
 alias fzfgl="git log --oneline | fzf | pbcopy"
 
