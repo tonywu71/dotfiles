@@ -39,6 +39,8 @@ chezmoi init --apply https://github.com/tonywu71/dotfiles.git
 
 ## Install brew formulae and casks
 
+Sign in to the Mac App Store first (open the App Store app and log in with your Apple ID). `brew bundle` uses `mas` to install the App Store apps listed in the `Brewfile`, and it fails if you are signed out.
+
 ```bash
 chezmoi cd  # you should see a `Brewfile` in the directory
 brew bundle
@@ -171,15 +173,6 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 ```
 
 Following this [tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), add the newly created SSH key here: <https://github.com/settings/keys>.
-
-From the Mac App Store, download the following apps using `mas`:
-
-```bash
-mas install 937984704  # Amphetamine
-mas install 1039633667  # Irvue
-mas install 1289583905  # Pixelmator Pro
-mas install 1444636541  # Photomator
-```
 
 ## Notes
 
