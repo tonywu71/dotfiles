@@ -95,6 +95,63 @@ move any personal additions you want to keep into `~/.extra`. Do not add the old
 source loop to `.zprofile` or `.bashrc`; `.zshrc` now loads those files for
 interactive zsh sessions.
 
+## Settings from Notion
+
+The preferences come from [MacBook Setup](https://app.notion.com/p/tonywu71/MacBook-Setup-f1d68e10c55f4f479b72583c8f72416b).
+On a personal Mac, `chezmoi apply` runs the settings scripts after updating
+files. Each script runs on its first apply and again when its rendered content
+changes. An unchanged script does not run on every apply or repair later drift.
+The scripts render to nothing on work Macs or when `personal` is missing.
+
+| Settings | What is applied |
+| --- | --- |
+| Finder | Show the Path Bar and search the current folder. |
+| Desktop & Dock | Hide recent apps, disable all Hot Corners, and stop grouping Mission Control windows by app. |
+| Keyboard | Set fast key repeat and short repeat delay, and disable period insertion after double-space. |
+| btop | Set the Dracula theme while preserving other settings. |
+| iTerm2 | Disable copying text to the clipboard when selecting it. |
+
+Quit btop and iTerm2 before applying. The btop script preserves other config
+entries and refuses to replace a symlink. If your btop config is a symlink,
+change its source file instead. Restart iTerm2 afterward, and log out and back in
+to load the macOS preferences. The scripts do not quit apps for you.
+
+For example, Finder's Path Bar previously needed a menu click. On a personal
+Mac, the saved preferences script enables it during `chezmoi apply`.
+
+Package installation remains separate. After signing into the App Store, run
+`brew bundle` from the repo when you want to install or upgrade its packages.
+To install the VSCode extensions listed in Notion, run this from the repo:
+
+```bash
+bash scripts/install-vscode-extensions.sh
+```
+
+The command requires personal mode, skips installed extension IDs, and does not
+remove other extensions. The list records the 61 IDs from Notion; availability
+was not checked against the live Marketplace. If an ID has been discontinued,
+the command stops at that error so you can review the list. VSCode Settings Sync
+and its GitHub login remain manual.
+
+### Settings still to do manually
+
+| Settings | Why they remain manual |
+| --- | --- |
+| Menu bar and Dock layout, Finder tags, view defaults, and file associations | The exact layout and file-type mappings need a separate implementation. |
+| Desktop Show Items | The page text and its screenshot conflict. |
+| Displays, Night Shift, True Tone, mouse, and trackpad | They depend on hardware or settings without a verified command here. |
+| Keyboard Services, backlight timeout, and dictation | The exact preferences and dictation languages need checking. |
+| Lock Screen, notifications, Siri, screen saver, and Spotlight exclusions | The current preference keys and intended code-folder path need checking. |
+| Calendar, Notes, Mail, and signatures | Their app preferences and account details need separate handling. |
+| iTerm2 profiles, theme, font, and shell integration; Stats and Rectangle exports | Review saved exports before importing them, and keep unrelated preferences. |
+| VSCode appearance and Python analysis settings | Preserve existing settings and Settings Sync choices before merging them. |
+| Other app preferences, browser extensions, and Docker resources | No verified automation is included for these yet. |
+| Accounts, Touch ID, licenses, and the initial account/home-folder name | They require your input. |
+
+The old Spotlight workaround that creates `Xcode.app` is not included because
+its applicability to current macOS is unverified. The unreadable Dev tools
+block in Notion is also excluded.
+
 ## App-specific setup
 
 `amazon-q`:
@@ -157,5 +214,8 @@ Following this [tutorial](https://docs.github.com/en/authentication/connecting-t
 
 ## Checks
 
-Run `bash tests/check.sh` to check the templates and personal-machine exclusions.
-The checks use a temporary destination and do not apply settings to your Mac.
+Run `bash tests/check.sh` with chezmoi, zsh, and ShellCheck installed. The checks
+use a temporary destination and mock preference writes and extension installs.
+They cover work-mode exclusions, personal shell installation, script reruns,
+and preservation of existing btop settings. They do not change your Mac settings
+or confirm the visual result on a personal Mac.
