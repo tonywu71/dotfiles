@@ -32,3 +32,17 @@ if grep -Eq '(^|/)(Brewfile|tests)(/|$)' <<< "$managed"; then
     exit 1
 fi
 echo 'Personal-machine config and exclusions passed.'
+
+for file in "$source_dir/dot_zprofile" "$source_dir/dot_zshrc"; do
+    zsh -n "$file"
+done
+printf 'existing work zshrc\n' > "$temporary/home/.zshrc"
+printf 'existing work zprofile\n' > "$temporary/home/.zprofile"
+"${chezmoi_command[@]}" --override-data '{"personal":false}' apply
+grep -Fqx 'existing work zshrc' "$temporary/home/.zshrc"
+grep -Fqx 'existing work zprofile' "$temporary/home/.zprofile"
+"${chezmoi_command[@]}" --override-data '{"personal":true,"chezmoi":{"os":"darwin"}}' \
+    --force apply "$temporary/home/.zshrc" "$temporary/home/.zprofile"
+cmp "$source_dir/dot_zshrc" "$temporary/home/.zshrc"
+cmp "$source_dir/dot_zprofile" "$temporary/home/.zprofile"
+echo 'Work shell preservation and personal shell installation passed.'

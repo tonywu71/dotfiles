@@ -73,83 +73,27 @@ brew bundle
 ## Install oh-my-zsh
 
 > [!WARNING]
-> This section and the zshrc sections below are for my personal laptop only. Do not run them on my work laptop, which has its own `.zshrc`.
+> This section is for my personal laptop only. Do not run it on my work laptop, which has its own `.zshrc`.
 
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-## Additional zshrc-related setup
+## Personal shell config
 
-> [!TIP]
-> For cleaner files, separate the different apps with `---` lines, as shown below.
+On a personal Mac, chezmoi manages `.zshrc` and `.zprofile`. On a work Mac, both
+files are ignored and left unchanged.
 
-### Set up oh-my-zsh
+The personal config loads Homebrew, oh-my-zsh, fzf, powerlevel10k, and
+zsh-syntax-highlighting. It also loads `.p10k.zsh` if present and sources
+`.path`, `.exports`, `.aliases`, and `.extra` when they exist. `.zprofile` adds
+the VSCode command-line tool to PATH.
 
-Override the default settings in `~/.zshrc` with the following snippet to:
-
-- Remove the unused settings from `~/.zshrc` for clarity
-- Enable automatic updates
-- Install `oh-my-zsh` plugins
-
-```bash
-# ------------------- oh-my-zsh -------------------
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load
-ZSH_THEME="robbyrussell"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-zstyle ':omz:update' frequency 13
-
-# Which plugins would you like to load?
-plugins=(git)
-```
-
-### Set up other bash plugins
-
-```bash
-# ------------------- fzf -------------------
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-
-
-# ------------------- powerlevel10k -------------------
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
-
-
-# ------------------- zsh-syntax-highlighting -------------------
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
-# ----------------------------------------------
-```
-
-### Link to other shell dotfiles
-
-*Manually* add the snippet below to your `.zshrc`. `.zprofile`, and `.bashrc` files to load the dotfiles automatically at shell startup.
-
-```bash
-# ------------------- load dotfiles -------------------
-# Load the following shell dotfiles:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.exports can be used for non-confidential environment variables.
-# * ~/.aliases can be used for creating custom aliases.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,exports,aliases,extra}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
-```
-
-> [!IMPORTANT]
-> Do this *manually* as the bash configuration files often have pre-blocks for other programs like `oh-my-zsh`, `powerlevel10k`, and `amazon-q`.
+Install oh-my-zsh using the section above before applying the personal config.
+On the first apply, compare your current shell files with `chezmoi diff` and
+move any personal additions you want to keep into `~/.extra`. Do not add the old
+source loop to `.zprofile` or `.bashrc`; `.zshrc` now loads those files for
+interactive zsh sessions.
 
 ## App-specific setup
 
