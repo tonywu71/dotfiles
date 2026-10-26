@@ -1,5 +1,5 @@
 .DS_Store
 AGENTS.md
-/README.md
-/.env
-/.extra
+README.md
+.env
+.extra
