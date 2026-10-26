@@ -4,7 +4,7 @@
 	name = Tony Wu
 	email = 28306721+tonywu71@users.noreply.github.com
 [lfs]
-	storage = /Users/tony/.cache/git-lfs
+	storage = {{ .chezmoi.homeDir }}/.cache/git-lfs
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
