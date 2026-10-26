@@ -31,11 +31,16 @@ brew install chezmoi
 
 ## Install dotfiles
 
-Now that you have `git` and `chezmoi` installed, you can download this repository with:
+Now that you have `git` and `chezmoi` installed, clone this repository where you want to edit it, and tell `chezmoi` to use that folder as its source:
 
 ```bash
-chezmoi init --apply https://github.com/tonywu71/dotfiles.git
+git clone https://github.com/tonywu71/dotfiles.git ~/code/personal/dotfiles
+mkdir -p ~/.config/chezmoi
+echo 'sourceDir = "'"$HOME"'/code/personal/dotfiles"' > ~/.config/chezmoi/chezmoi.toml
+chezmoi apply
 ```
+
+This way `chezmoi diff` and `chezmoi apply` read your edits directly. You do not need to push before applying.
 
 ## Install brew formulae and casks
 
