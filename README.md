@@ -54,6 +54,9 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 ## Additional zshrc-related setup
 
+> [!WARNING]
+> This setup (oh-my-zsh and everything about `.zshrc` below) is for my personal laptop only. Do not run it on my work laptop, which has its own `.zshrc`.
+
 > [!TIP]
 > For cleaner files, separate the different apps with `---` lines, as shown below.
 
