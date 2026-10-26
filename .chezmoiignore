@@ -4,9 +4,6 @@ README.md
 .env
 .extra
 Brewfile
-tests
-scripts
-vscode-extensions.txt
 {{ if not (and (eq .chezmoi.os "darwin") (index . "personal" | default false)) }}
 .zprofile
 .zshrc
