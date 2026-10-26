@@ -3,3 +3,9 @@ AGENTS.md
 README.md
 .env
 .extra
+Brewfile
+tests
+{{ if not (and (eq .chezmoi.os "darwin") (index . "personal" | default false)) }}
+.zprofile
+.zshrc
+{{ end }}

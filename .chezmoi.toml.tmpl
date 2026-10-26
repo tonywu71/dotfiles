@@ -1,0 +1,5 @@
+{{- $personal := promptBoolOnce . "personal" "Is this your personal Mac?" false -}}
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+[data]
+personal = {{ $personal }}

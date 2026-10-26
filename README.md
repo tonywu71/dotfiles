@@ -35,12 +35,31 @@ Now that you have `git` and `chezmoi` installed, clone this repository where you
 
 ```bash
 git clone https://github.com/tonywu71/dotfiles.git ~/code/personal/dotfiles
-mkdir -p ~/.config/chezmoi
-echo 'sourceDir = "'"$HOME"'/code/personal/dotfiles"' > ~/.config/chezmoi/chezmoi.toml
+chezmoi init --source ~/code/personal/dotfiles
+chezmoi diff
 chezmoi apply
 ```
 
 This way `chezmoi diff` and `chezmoi apply` read your edits directly. You do not need to push before applying.
+
+### Personal and work Macs
+
+`chezmoi init` asks whether this is your personal Mac. Answer no on a work Mac.
+The answer is saved in `~/.config/chezmoi/chezmoi.toml`, outside this repo:
+
+```toml
+[data]
+personal = false
+```
+
+`personal` is our custom variable in chezmoi's built-in config file. It defaults
+to false. Personal shell files and setup scripts require `personal = true` and
+macOS. Work Macs keep their existing `.zshrc` and `.zprofile`. The existing shared
+`.aliases` and `.gitconfig` are still managed on both kinds of Mac.
+
+For an existing checkout, run `chezmoi init` to generate the local config, then
+review `chezmoi diff` before applying anything. Changing the local value later
+does not undo settings that were already applied.
 
 ## Install brew formulae and casks
 
@@ -191,3 +210,8 @@ Following this [tutorial](https://docs.github.com/en/authentication/connecting-t
     ```bash
     softwareupdate --install-rosetta
     ```
+
+## Checks
+
+Run `bash tests/check.sh` to check the templates and personal-machine exclusions.
+The checks use a temporary destination and do not apply settings to your Mac.
