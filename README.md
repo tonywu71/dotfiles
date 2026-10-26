@@ -18,8 +18,8 @@ Then:
 - Add Homebrew to your `$PATH` by following the on-screen instructions. An example command is shown below.
 
 ```bash
-echo >> /Users/tonywu/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/tonywu/.zprofile
+echo >> ~/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
@@ -48,14 +48,14 @@ brew bundle
 
 ## Install oh-my-zsh
 
+> [!WARNING]
+> This section and the zshrc sections below are for my personal laptop only. Do not run them on my work laptop, which has its own `.zshrc`.
+
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
 ## Additional zshrc-related setup
-
-> [!WARNING]
-> This setup (oh-my-zsh and everything about `.zshrc` below) is for my personal laptop only. Do not run it on my work laptop, which has its own `.zshrc`.
 
 > [!TIP]
 > For cleaner files, separate the different apps with `---` lines, as shown below.
