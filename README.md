@@ -98,29 +98,23 @@ interactive zsh sessions.
 
 ## Agent-led setup
 
-Ask an agent to set up the personal Mac using `AGENTS.md` and the current
-[MacBook Setup page in Notion](https://app.notion.com/p/tonywu71/MacBook-Setup-f1d68e10c55f4f479b72583c8f72416b).
-The agent should read the linked pages, toggles, and screenshots too.
+The workflow is in the instruction-only
+[macbook-setup skill](.claude/skills/macbook-setup/SKILL.md). In Claude Code,
+invoke `/macbook-setup` from this repo, or ask to set up your personal Mac.
+For other agents, `AGENTS.md` points to the same skill file.
 
-Before making changes, the agent lists the tools, apps, plugins, and extensions
-to install, showing which are already present and which are missing. It also
-explains the settings changes and the steps that require your input.
+The skill reads the current
+[MacBook Setup page in Notion](https://app.notion.com/p/tonywu71/MacBook-Setup-f1d68e10c55f4f479b72583c8f72416b),
+including linked pages, toggles, and screenshots.
 
-The agent uses current commands or temporary scripts to apply the settings.
-Scripts are preferred over Computer Use when a reliable command exists.
-There are no saved setup scripts in this repo, and `chezmoi apply` only updates
-the managed dotfiles. Package installation stays separate through an explicit
-`brew bundle` command. Extension lists and app preferences stay in Notion.
+The agent first lists what should be installed and what is already present.
+It then performs the requested setup with temporary scripts where practical,
+or Computer Use when needed. It flags renamed settings and suggests Notion
+corrections without editing Notion unless you ask.
 
-If a setting has been renamed, the agent warns you with the old and current
-names and suggests the exact Notion correction. For example, if Notion names
-an old settings tab, the agent explains where the option now lives before
-changing it. If the equivalent setting is uncertain or the page conflicts with
-itself, the agent leaves that setting unchanged and asks you. Notion is read
-only unless you explicitly ask the agent to edit it.
-
-Removing the saved setup scripts does not undo preferences already applied
-on a Mac.
+`chezmoi apply` only updates managed dotfiles. Package installation remains an
+explicit `brew bundle` step. There are no saved setup scripts or copied Notion
+extension lists in this repo.
 
 ## App-specific setup
 
