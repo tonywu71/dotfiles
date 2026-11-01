@@ -132,6 +132,15 @@ Setup Brew to upgrade all formulae and casks and run its `cleanup` command once 
 brew autoupdate start 604800 --cleanup --upgrade
 ```
 
+`claude-code`:
+
+Install my [Session Compass](https://github.com/tonywu71/session-compass) mod. It needs Claude Code 2.1.287 or later.
+
+```bash
+claude plugin marketplace add tonywu71/session-compass
+claude plugin install session-compass@tonywu71-mods
+```
+
 `github`:
 
 Login with `gh`:
