@@ -175,6 +175,18 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
 Following this [tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), add the newly created SSH key here: <https://github.com/settings/keys>.
 
+`tmux`:
+
+I run Claude Code sessions inside tmux with iTerm2's control mode, so the panes and sessions survive quitting iTerm2. `chezmoi apply` installs `~/.tmux.conf` and the `t` alias in `~/.aliases`.
+
+```bash
+t  # attach to the "main" session, or create it
+```
+
+- Quit iTerm2 with `Cmd+Q` to detach. `Cmd+W` on a tab kills that tmux window.
+- A reboot stops tmux. Run `claude --resume` in each worktree to get the conversations back.
+- After editing `~/.tmux.conf`, run `tmux source ~/.tmux.conf`. Restart Claude Code sessions to pick up the new environment.
+
 ## Notes
 
 - Machine-specific configurations should be stored in `~/.extra`. If exists, this file will be automatically sourced.
