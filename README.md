@@ -134,6 +134,8 @@ brew autoupdate start 604800 --cleanup --upgrade
 
 `claude-code`:
 
+Add `"outputStyle": "Concise"` to `~/.claude/settings.json`. Setting it in `/config` only saves it for the current project.
+
 Install my [Session Compass](https://github.com/tonywu71/session-compass) mod. It needs Claude Code 2.1.287 or later.
 
 ```bash
