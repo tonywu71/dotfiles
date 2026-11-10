@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+# Finder matches favorites by tag name, so the tags must already exist (they sync with iCloud).
+defaults write com.apple.finder FavoriteTagNames -array "" Important "In Progress" Done Favorites Todo
+killall Finder
+{{ end -}}
