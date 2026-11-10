@@ -62,6 +62,11 @@ For an existing checkout, run `chezmoi init` to generate the local config, then
 review `chezmoi diff` before applying anything. Changing the local value later
 does not undo settings that were already applied.
 
+On a work Mac, always name the file when you run `chezmoi re-add`, for example
+`chezmoi re-add ~/.claude/CLAUDE.md`. Work Macs are often not fully applied, so
+some home files are older than the repo. A bare `chezmoi re-add` would copy
+those older files into the repo.
+
 ## Install brew formulae and casks
 
 Sign in to the Mac App Store first (open the App Store app and log in with your Apple ID). `brew bundle` uses `mas` to install the App Store apps listed in the `Brewfile`, and it fails if you are signed out.
