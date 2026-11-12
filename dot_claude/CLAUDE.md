@@ -28,6 +28,7 @@
 - Type local variables when the type is unclear or helps the type checker.
 - Prefer explicit variable names over short ones, unless the repo's own conventions say otherwise.
 - Comments explain WHY and default to none: only when the logic is genuinely complex, and usually one short line.
+- Keep docstrings clear and concise: say what the function does and anything non-obvious about its arguments or return value. Skip restating the type hints.
 
 ## Private helpers
 
