@@ -184,10 +184,11 @@ Following this [tutorial](https://docs.github.com/en/authentication/connecting-t
 
 `tmux`:
 
-I run Claude Code sessions inside tmux with iTerm2's control mode, so the panes and sessions survive quitting iTerm2. `chezmoi apply` installs `~/.tmux.conf` and the `t` alias in `~/.aliases`.
+I run Claude Code sessions inside tmux with iTerm2's control mode, so the panes and sessions survive quitting iTerm2. `chezmoi apply` installs `~/.tmux.conf` and the `t` and `tp` aliases in `~/.aliases`.
 
 ```bash
-t  # attach to the "main" session, or create it
+t   # attach to the "main" session, or create it
+tp  # list every pane with its title and folder
 ```
 
 - Quit iTerm2 with `Cmd+Q` to detach. `Cmd+W` on a tab kills that tmux window.

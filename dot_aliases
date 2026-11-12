@@ -22,3 +22,4 @@ alias fzfuvpip="uv pip freeze | fzf | pbcopy"
 
 # tmux
 alias t="tmux -CC new -A -s main"
+alias tp="tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index};#{pane_title};#{b:pane_current_path}' | column -t -s ';'"
