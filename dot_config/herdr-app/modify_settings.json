@@ -1,0 +1,19 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Herdr rewrites settings.json itself, so set only our keys and keep the rest. */ -}}
+{{- $wanted := dict "theme" "snazzy" "font" "MesloLGS NF" "font_size" 13 "font_weight" 400 -}}
+{{- $settings := dict -}}
+{{- if trim .chezmoi.stdin -}}
+{{-   $settings = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $changed := false -}}
+{{- range $key, $value := $wanted -}}
+{{-   if ne (toJson (index $settings $key)) (toJson $value) -}}
+{{-     $changed = true -}}
+{{-     $settings = setValueAtPath $key $value $settings -}}
+{{-   end -}}
+{{- end -}}
+{{- if $changed -}}
+{{-   toPrettyJson $settings -}}
+{{- else -}}
+{{-   .chezmoi.stdin -}}
+{{- end -}}

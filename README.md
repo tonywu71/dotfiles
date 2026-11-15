@@ -186,6 +186,19 @@ iTerm2 theme:
 
 `chezmoi apply` imports the [Snazzy](https://github.com/sindresorhus/iterm2-snazzy) color preset into iTerm2. Select it once in Settings → Profiles → Colors → Color Presets → Snazzy.
 
+Herdr:
+
+`brew bundle` installs Herdr.app with the `herdr-app` cask, and the app installs herdr-core (`hc`) itself. If Herdr.app was installed by hand in `~/Applications`, remove it first, or brew adds a second copy in `/Applications`. The `herdr` formula is the older terminal multiplexer, a separate tool. `chezmoi apply` sets up the same look as iTerm2:
+
+- `~/.config/herdr-app/themes/snazzy.json` holds the Snazzy colors, converted from the iTerm2 preset.
+- `~/.config/herdr-app/settings.json` gets `theme`, `font` (MesloLGS NF), `font_size` (13) and `font_weight` (400). Herdr also writes to this file, so chezmoi sets only these four keys and keeps the rest. Herdr's default weight is 500, which looks bolder than iTerm2. Size 13 in Herdr looks the same as size 14 in iTerm2.
+
+To change one of these keys, edit `dot_config/herdr-app/modify_settings.json`. It leaves the file untouched when the keys already match, so `chezmoi diff` stays clean after Herdr rewrites the file.
+
+A theme or text size picked in the Herdr UI is saved in `~/.config/herdr-app/layouts/.state/` and wins over `settings.json`. Don't edit `.state` by hand. To set the theme from a shell, run `herdr-app do app.theme --name snazzy`.
+
+Run `/herdr` in Claude Code to change Herdr with an agent.
+
 `tmux`:
 
 I run Claude Code sessions inside tmux with iTerm2's control mode, so the panes and sessions survive quitting iTerm2. `chezmoi apply` installs `~/.tmux.conf` and the `t` and `tp` aliases in `~/.aliases`.
