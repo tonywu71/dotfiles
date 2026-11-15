@@ -123,12 +123,6 @@ extension lists in this repo.
 
 ## App-specific setup
 
-`amazon-q`:
-
-```bash
-q integrations install ssh
-```
-
 `brew`:
 
 Setup Brew to upgrade all formulae and casks and run its `cleanup` command once a week.

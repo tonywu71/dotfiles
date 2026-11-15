@@ -54,7 +54,6 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 cask "adguard"
-cask "amazon-q"
 cask "appcleaner"
 cask "arc"
 cask "betterdisplay"
