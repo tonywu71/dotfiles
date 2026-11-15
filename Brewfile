@@ -1,4 +1,5 @@
 tap "homebrew/autoupdate"
+tap "microsoft/inshellisense", "https://github.com/microsoft/inshellisense"
 
 brew "bat"
 brew "brew-cask-completion"
@@ -23,6 +24,7 @@ brew "helm"
 brew "herdr" # older terminal multiplexer, separate from Herdr.app
 brew "httpie"
 brew "imagemagick-full"
+brew "inshellisense"
 brew "jq"
 brew "just"
 brew "k9s"

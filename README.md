@@ -123,6 +123,28 @@ extension lists in this repo.
 
 ## App-specific setup
 
+`inshellisense`:
+
+`brew bundle` installs it from the `microsoft/inshellisense` tap. If you skipped
+`brew bundle`, install it directly:
+
+```bash
+brew tap microsoft/inshellisense https://github.com/microsoft/inshellisense
+brew install inshellisense
+```
+
+Then generate the shell resources once and check the setup. `dot_zshrc` already
+sources the zsh hook as its last line, and `chezmoi apply` installs the settings
+from `dot_config/inshellisense/rc.toml` (Nerd Font icons, Snazzy blue highlight,
+rounded box, alias expansion).
+
+```bash
+is init zsh
+is doctor
+```
+
+After `brew upgrade inshellisense`, run `is reinit`.
+
 `brew`:
 
 Setup Brew to upgrade all formulae and casks and run its `cleanup` command once a week.

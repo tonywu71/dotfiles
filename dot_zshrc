@@ -27,3 +27,8 @@ if [[ -n ${brew_prefix:-} ]]; then
     fi
     unset brew_prefix
 fi
+
+# inshellisense must stay last (see its README).
+inshellisense_init="${XDG_DATA_HOME:-$HOME/.local/share}/inshellisense/zsh/init.zsh"
+[[ -f "$inshellisense_init" ]] && source "$inshellisense_init"
+unset inshellisense_init
