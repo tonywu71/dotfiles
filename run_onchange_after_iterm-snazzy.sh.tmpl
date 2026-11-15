@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+set -e
+# Opening an .itermcolors file makes iTerm2 import it as a color preset.
+theme="$(mktemp -d)/Snazzy.itermcolors"
+curl -fsSL -o "$theme" https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/27b3156992a87ccb36c44448592e85da70f61acc/Snazzy.itermcolors
+open -a iTerm "$theme"
+{{ end -}}

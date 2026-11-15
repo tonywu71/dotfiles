@@ -182,6 +182,10 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
 Following this [tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), add the newly created SSH key here: <https://github.com/settings/keys>.
 
+iTerm2 theme:
+
+`chezmoi apply` imports the [Snazzy](https://github.com/sindresorhus/iterm2-snazzy) color preset into iTerm2. Select it once in Settings → Profiles → Colors → Color Presets → Snazzy.
+
 `tmux`:
 
 I run Claude Code sessions inside tmux with iTerm2's control mode, so the panes and sessions survive quitting iTerm2. `chezmoi apply` installs `~/.tmux.conf` and the `t` and `tp` aliases in `~/.aliases`.
