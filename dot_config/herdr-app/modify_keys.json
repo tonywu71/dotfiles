@@ -1,0 +1,22 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Set only our keys and keep the rest, so keys made in the Herdr UI stay.
+       With no keys.json yet, write nothing: a file with only our keys would
+       replace all of Herdr's default shortcuts. Open Herdr once, then apply. */ -}}
+{{- $wanted := dict "cmd-w" "mod.open:ask-close-tab" -}}
+{{- if not (trim .chezmoi.stdin) -}}
+{{-   .chezmoi.stdin -}}
+{{- else -}}
+{{- $keys := fromJson .chezmoi.stdin -}}
+{{- $changed := false -}}
+{{- range $key, $value := $wanted -}}
+{{-   if ne (toJson (dig "global" $key "" $keys)) (toJson $value) -}}
+{{-     $changed = true -}}
+{{-     $keys = setValueAtPath (list "global" $key) $value $keys -}}
+{{-   end -}}
+{{- end -}}
+{{- if $changed -}}
+{{-   toPrettyJson $keys -}}
+{{- else -}}
+{{-   .chezmoi.stdin -}}
+{{- end -}}
+{{- end -}}
