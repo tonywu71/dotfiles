@@ -213,6 +213,15 @@ To change one of these keys, edit `dot_config/herdr-app/modify_settings.json`. I
 
 A theme or text size picked in the Herdr UI is saved in `~/.config/herdr-app/layouts/.state/` and wins over `settings.json`. Don't edit `.state` by hand. To set the theme from a shell, run `herdr-app do app.theme --name snazzy`.
 
+`Cmd+W` asks before it closes a tab that has more than one pane. A tab with one pane closes at once, as before. Two files set this up:
+
+- `~/.config/herdr-app/mods/ask-close-tab/` is a small mod. It counts the panes in the focused tab. With one pane it closes the tab. With more, it opens Herdr's own `confirm` dialog, where Enter closes the tab and Esc cancels.
+- `~/.config/herdr-app/keys.json` gets `"cmd-w": "mod.open:ask-close-tab"`. Herdr writes this file too, so `dot_config/herdr-app/modify_keys.json` sets only this key and keeps the rest.
+
+On a new Mac, open Herdr once before `chezmoi apply`. Herdr writes its default `keys.json` on the first start. Until that file exists, chezmoi leaves it alone, because a file with only `Cmd+W` would replace all of Herdr's default shortcuts. Run `chezmoi apply` again after the first start to add the key.
+
+The × button on a tab and Close in its right-click menu still close without asking. Only `Cmd+W` goes through the mod. To turn it off, set `cmd-w` back to `tab.close` in `modify_keys.json`.
+
 Run `/herdr` in Claude Code to change Herdr with an agent.
 
 `tmux`:
