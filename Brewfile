@@ -1,4 +1,4 @@
-tap "homebrew/autoupdate"
+tap "domt4/autoupdate"
 tap "microsoft/inshellisense", "https://github.com/microsoft/inshellisense"
 
 brew "bat"
