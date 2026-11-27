@@ -31,3 +31,12 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+# Machine-specific overrides, such as a work email. Git skips this if the file is missing.
+[include]
+	path = ~/.gitconfig.local
