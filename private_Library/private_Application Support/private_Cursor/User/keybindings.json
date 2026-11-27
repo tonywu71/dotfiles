@@ -21,9 +21,5 @@
             "text": "\u001b\r"
         },
         "when": "terminalFocus"
-    },
-    {
-        "key": "cmd+k alt+cmd+f",
-        "command": "workbench.view.extension.favorites-explorer"
     }
 ]

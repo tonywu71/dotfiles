@@ -10,7 +10,6 @@ davidanson.vscode-markdownlint
 eamodio.gitlens
 foxundermoon.shell-format
 github.vscode-pull-request-github
-howardzuo.vscode-favorites
 iliazeus.vscode-ansi
 mechatroner.rainbow-csv
 mikestead.dotenv
