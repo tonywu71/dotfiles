@@ -1,6 +1,7 @@
 .DS_Store
 AGENTS.md
 README.md
+docs
 .env
 .extra
 Brewfile
@@ -8,4 +9,3 @@ Brewfile
 .zprofile
 .zshrc
 {{ end }}
-docs
