@@ -12,6 +12,13 @@ brew autoupdate start 604800 --cleanup --upgrade
 
 ## Claude Code
 
+Install with the native installer, not brew. It updates itself in the
+background, while the `claude-code` cask needs `brew upgrade`:
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
 Add `"outputStyle": "Concise"` to `~/.claude/settings.json`. Setting it in
 `/config` only saves it for the current project.
 
