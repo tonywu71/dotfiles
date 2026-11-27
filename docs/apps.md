@@ -4,10 +4,13 @@ Steps that `brew bundle` and `chezmoi apply` do not cover on their own.
 
 ## brew
 
-Upgrade all formulae and casks and run `cleanup` once a week:
+Upgrade all formulae and casks and run `cleanup` once a week. Newer brew
+refuses commands from taps you have not trusted, so trust the tap first:
 
 ```bash
+brew trust domt4/autoupdate
 brew autoupdate start 604800 --cleanup --upgrade
+brew autoupdate status  # should say "installed and running"
 ```
 
 ## Claude Code
@@ -29,6 +32,12 @@ It needs Claude Code 2.1.287 or later.
 claude plugin marketplace add tonywu71/session-compass
 claude plugin install session-compass@tonywu71-mods
 ```
+
+## Codex
+
+Install with the `codex` cask from the Brewfile, not the install script. The
+script install only tells you about new versions and waits for `codex update`.
+The cask gets upgraded each week by brew autoupdate.
 
 ## GitHub
 
