@@ -32,16 +32,20 @@ source:
 ```bash
 git clone https://github.com/tonywu71/dotfiles.git ~/code/personal/dotfiles
 chezmoi init --source ~/code/personal/dotfiles
-chezmoi diff
-chezmoi apply
 ```
 
 `chezmoi init` asks whether this is your personal Mac. Answer no on a work Mac.
 
 > [!IMPORTANT]
-> On a work Mac, read [docs/machines.md](docs/machines.md) before the first
-> `chezmoi apply`. You need to create `~/.gitconfig.local` first, or your work
-> commits will use the personal email.
+> Before the first `chezmoi apply`, run `gh auth login` (GitHub HTTPS auth goes
+> through `gh`). On a work Mac, also create `~/.gitconfig.local` with your work
+> email, or work commits will use the personal one. See
+> [docs/machines.md](docs/machines.md).
+
+```bash
+chezmoi diff
+chezmoi apply
+```
 
 `chezmoi diff` and `chezmoi apply` read your edits directly, so you do not need
 to push before applying.

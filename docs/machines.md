@@ -16,15 +16,16 @@ applying personal Notion settings must also check this flag. Work Macs keep
 their existing `.zshrc` and `.zprofile`. The shared `.aliases` and `.gitconfig`
 are still managed on both kinds of Mac.
 
-For an existing checkout, pass `--source` again. Plain `chezmoi init` on a Mac
-with no chezmoi config uses `~/.local/share/chezmoi` instead of this repo:
+If the repo is already cloned but `~/.config/chezmoi/chezmoi.toml` does not
+exist, run `chezmoi init` with `--source`, as in README step 2. Plain
+`chezmoi init` uses `~/.local/share/chezmoi` instead of this repo:
 
 ```bash
 chezmoi init --source ~/code/personal/dotfiles
 chezmoi source-path  # should print ~/code/personal/dotfiles
 ```
 
-Then review `chezmoi diff` before applying anything. Changing the local value later
+Then review `chezmoi diff` before applying anything. Changing `personal` later
 does not undo settings that were already applied.
 
 ## `chezmoi re-add` on a work Mac
@@ -39,6 +40,10 @@ bare `chezmoi re-add` would copy those older files into the repo.
 GitHub noreply email. Its last lines include `~/.gitconfig.local`. Git reads
 that file last, so its values win. Git skips the include when the file is
 missing.
+
+GitHub HTTPS auth goes through `gh` on every Mac: the config clears other
+credential helpers, such as the macOS keychain. Run `gh auth login` before the
+first `chezmoi apply`, or `git push` over HTTPS asks for a password.
 
 | Mac      | `~/.gitconfig.local` | Commits use   |
 | -------- | -------------------- | ------------- |
