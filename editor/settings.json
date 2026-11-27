@@ -1,0 +1,87 @@
+{
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.formatOnSave": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.formatOnSave": false
+  },
+  "[json]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications"
+  },
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
+  "accessibility.signalOptions.volume": 0,
+  "claudeCode.preferredLocation": "sidebar",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.accessibilitySupport": "off",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.cursorBlinking": "expand",
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "extensions.ignoreRecommendations": true,
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true,
+    "**/venv/**": true
+  },
+  "git.autofetch": true,
+  "git.blame.editorDecoration.enabled": false,
+  "git.blame.statusBarItem.enabled": true,
+  "git.confirmSync": false,
+  "git.replaceTagsWhenPull": true,
+  "githubPullRequests.pullBranch": "never",
+  "gitlens.views.scm.grouped.views": {
+    "branches": true,
+    "commits": true,
+    "contributors": true,
+    "fileHistory": true,
+    "launchpad": false,
+    "remotes": true,
+    "repositories": true,
+    "searchAndCompare": false,
+    "stashes": true,
+    "tags": true,
+    "worktrees": true
+  },
+  "notebook.defaultFormatter": "charliermarsh.ruff",
+  "notebook.formatOnSave.enabled": true,
+  "python.analysis.typeCheckingMode": "standard",
+  "ruff.lineLength": 120,
+  "security.promptForLocalFileProtocolHandling": false,
+  "terminal.external.osxExec": "/Applications/iTerm.app",
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.shellIntegration.history": 1000,
+  "window.autoDetectColorScheme": false,
+  "window.commandCenter": true,
+  "workbench.colorCustomizations": {
+    "editor.findMatchBorder": "#ffb703",
+    "editor.findMatchHighlightBorder": "#fefae0",
+    "editor.wordHighlightBorder": "#3797D4",
+    "editor.wordHighlightStrongBorder": "#E4572E"
+  },
+  "workbench.colorTheme": "Palenight Operator"
+}

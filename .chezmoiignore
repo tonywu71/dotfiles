@@ -2,6 +2,7 @@
 AGENTS.md
 README.md
 docs
+editor
 .env
 .extra
 Brewfile

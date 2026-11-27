@@ -1,0 +1,9 @@
+{
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.composer.usageSummaryDisplay": "always",
+  "cursor.cpp.disabledLanguages": ["plaintext"],
+  "cursor.semanticSearch.includePullRequests": false,
+  "cursorpyright.analysis.typeCheckingMode": "standard",
+  "cursorpyright.shouldImportPylanceSettings": "never",
+  "workbench.activityBar.orientation": "vertical"
+}

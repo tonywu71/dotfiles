@@ -1,0 +1,21 @@
+{{- /* Set only the keys in .files and keep the rest, so machine-local settings survive. */ -}}
+{{- /* Drop full-line // comments: fromJson cannot read JSONC. */ -}}
+{{- $stdin := regexReplaceAll "(?m)^\\s*//.*$" .stdin "" -}}
+{{- $settings := dict -}}
+{{- if trim $stdin -}}
+{{-   $settings = fromJson $stdin -}}
+{{- end -}}
+{{- $changed := false -}}
+{{- range .files -}}
+{{-   range $key, $value := fromJson (include .) -}}
+{{-     if ne (toJson (index $settings $key)) (toJson $value) -}}
+{{-       $changed = true -}}
+{{-       $_ := set $settings $key $value -}}
+{{-     end -}}
+{{-   end -}}
+{{- end -}}
+{{- if $changed -}}
+{{-   toPrettyJson $settings -}}
+{{- else -}}
+{{-   .stdin -}}
+{{- end -}}
