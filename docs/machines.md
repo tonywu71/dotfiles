@@ -16,8 +16,15 @@ applying personal Notion settings must also check this flag. Work Macs keep
 their existing `.zshrc` and `.zprofile`. The shared `.aliases` and `.gitconfig`
 are still managed on both kinds of Mac.
 
-For an existing checkout, run `chezmoi init` to generate the local config, then
-review `chezmoi diff` before applying anything. Changing the local value later
+For an existing checkout, pass `--source` again. Plain `chezmoi init` on a Mac
+with no chezmoi config uses `~/.local/share/chezmoi` instead of this repo:
+
+```bash
+chezmoi init --source ~/code/personal/dotfiles
+chezmoi source-path  # should print ~/code/personal/dotfiles
+```
+
+Then review `chezmoi diff` before applying anything. Changing the local value later
 does not undo settings that were already applied.
 
 ## `chezmoi re-add` on a work Mac

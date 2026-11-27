@@ -30,6 +30,11 @@ them; restore only the intended preferences.
 
 ## Inspect and explain before changing anything
 
+Check that `chezmoi source-path` prints the dotfiles repo and that
+`~/.config/chezmoi/chezmoi.toml` exists. If either is wrong, report it and
+propose `chezmoi init --source <repo>`. Plain `chezmoi init` falls back to
+`~/.local/share/chezmoi`.
+
 Establish which Mac is the target from the conversation and local configuration.
 Personal setup requires macOS and `personal = true` in the local chezmoi config.
 If the target is unclear, ask. Never change that flag merely to bypass the
