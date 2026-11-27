@@ -1,0 +1,6 @@
+{{ if lookPath "cursor" -}}
+#!/bin/sh
+# Re-runs when the list changes: {{ include "editor/cursor-extensions.txt" | sha256sum }}
+# brew bundle installs vscode extensions into `code` only, so Cursor gets its own list.
+xargs -n1 cursor --install-extension < {{ joinPath .chezmoi.sourceDir "editor/cursor-extensions.txt" | quote }}
+{{ end -}}
