@@ -16,8 +16,6 @@ alias fzfgl="git log --oneline | fzf | pbcopy"
 
 # Python
 alias avenv="source .venv/bin/activate"
-alias cvenv="python -m venv .venv"
-alias fzfpip="pip freeze | fzf | pbcopy"
 alias fzfuvpip="uv pip freeze | fzf | pbcopy"
 
 # tmux
