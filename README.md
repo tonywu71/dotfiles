@@ -1,37 +1,33 @@
 # dotfiles
 
-- 💻 My personal dotfiles for my macOS setup.
-- 🏡 Repository is managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
+My macOS dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 
-## Preliminaries
+| Topic                            | File                                     |
+| -------------------------------- | ---------------------------------------- |
+| Personal vs work Macs, git email | [docs/machines.md](docs/machines.md)     |
+| Per-app setup                    | [docs/apps.md](docs/apps.md)             |
+| Agent-led Mac setup              | [macbook-setup skill](.claude/skills/macbook-setup/SKILL.md) |
 
-First, install `brew`:
+## 1. Install brew and chezmoi
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Then:
-
-- Accept the Xcode command line tools installation prompt
-- Wait for the installation to complete
-- Add Homebrew to your `$PATH` by following the on-screen instructions. An example command is shown below.
+Accept the Xcode command line tools prompt, wait for it to finish, then add
+Homebrew to your `$PATH` as the installer shows, for example:
 
 ```bash
 echo >> ~/.zprofile
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
-Finally, install `chezmoi`:
-
-```bash
 brew install chezmoi
 ```
 
-## Install dotfiles
+## 2. Install the dotfiles
 
-Now that you have `git` and `chezmoi` installed, clone this repository where you want to edit it, and tell `chezmoi` to use that folder as its source:
+Clone the repo where you want to edit it, and use that folder as chezmoi's
+source:
 
 ```bash
 git clone https://github.com/tonywu71/dotfiles.git ~/code/personal/dotfiles
@@ -40,245 +36,56 @@ chezmoi diff
 chezmoi apply
 ```
 
-This way `chezmoi diff` and `chezmoi apply` read your edits directly. You do not need to push before applying.
-
-### Personal and work Macs
-
 `chezmoi init` asks whether this is your personal Mac. Answer no on a work Mac.
-The answer is saved in `~/.config/chezmoi/chezmoi.toml`, outside this repo:
 
-```toml
-[data]
-personal = false
-```
+> [!IMPORTANT]
+> On a work Mac, read [docs/machines.md](docs/machines.md) before the first
+> `chezmoi apply`. You need to create `~/.gitconfig.local` first, or your work
+> commits will use the personal email.
 
-`personal` is our custom variable in chezmoi's built-in config file. It defaults
-to false. Personal shell files require `personal = true` and macOS. An agent
-applying personal Notion settings must also check this flag. Work Macs keep
-their existing `.zshrc` and `.zprofile`. The existing shared `.aliases` and
-`.gitconfig` are still managed on both kinds of Mac.
+`chezmoi diff` and `chezmoi apply` read your edits directly, so you do not need
+to push before applying.
 
-For an existing checkout, run `chezmoi init` to generate the local config, then
-review `chezmoi diff` before applying anything. Changing the local value later
-does not undo settings that were already applied.
+## 3. Install apps
 
-On a work Mac, always name the file when you run `chezmoi re-add`, for example
-`chezmoi re-add ~/.claude/CLAUDE.md`. Work Macs are often not fully applied, so
-some home files are older than the repo. A bare `chezmoi re-add` would copy
-those older files into the repo.
-
-### Git email on a work Mac
-
-`chezmoi apply` writes the same `~/.gitconfig` on every Mac, with the personal
-GitHub noreply email. Its last lines include `~/.gitconfig.local`. Git reads
-that file last, so its values win. Git skips the include when the file is
-missing.
-
-| Mac      | `~/.gitconfig.local` | Commits use        |
-| -------- | -------------------- | ------------------ |
-| Personal | missing              | noreply email      |
-| Work     | sets the work email  | work email         |
-
-On a work Mac, create the file before the first `chezmoi apply`. Otherwise your
-work commits use the personal email:
+Sign in to the Mac App Store first. `brew bundle` uses `mas` for App Store apps
+and fails if you are signed out.
 
 ```bash
-git config -f ~/.gitconfig.local user.email <work-email>
-chezmoi apply
-git config user.email  # should print the work email
-```
-
-Keep `~/.gitconfig.local` out of this repo. Put any other git setting that
-belongs to one Mac only in the same file.
-
-## Install brew formulae and casks
-
-Sign in to the Mac App Store first (open the App Store app and log in with your Apple ID). `brew bundle` uses `mas` to install the App Store apps listed in the `Brewfile`, and it fails if you are signed out.
-
-```bash
-chezmoi cd  # you should see a `Brewfile` in the directory
+chezmoi cd  # the folder with the Brewfile
 brew bundle
 ```
 
-## Install oh-my-zsh
-
-> [!WARNING]
-> This section is for my personal laptop only. Do not run it on my work laptop, which has its own `.zshrc`.
-
-```bash
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-## Personal shell config
-
-On a personal Mac, chezmoi manages `.zshrc` and `.zprofile`. On a work Mac, both
-files are ignored and left unchanged.
-
-The personal config loads Homebrew, oh-my-zsh, fzf, powerlevel10k, and
-zsh-syntax-highlighting. It also loads `.p10k.zsh` if present and sources
-`.path`, `.exports`, `.aliases`, and `.extra` when they exist. `.zprofile` adds
-the VSCode command-line tool to PATH.
-
-Install oh-my-zsh using the section above before applying the personal config.
-On the first apply, compare your current shell files with `chezmoi diff` and
-move any personal additions you want to keep into `~/.extra`. Do not add the old
-source loop to `.zprofile` or `.bashrc`; `.zshrc` now loads those files for
-interactive zsh sessions.
+Then follow [docs/apps.md](docs/apps.md) for the apps that need extra steps.
 
 ## Agent-led setup
 
-The workflow is in the instruction-only
-[macbook-setup skill](.claude/skills/macbook-setup/SKILL.md). In Claude Code,
-invoke `/macbook-setup` from this repo, or ask to set up your personal Mac.
-For other agents, `AGENTS.md` points to the same skill file.
-
-The skill reads the current
-[MacBook Setup page in Notion](https://app.notion.com/p/tonywu71/MacBook-Setup-f1d68e10c55f4f479b72583c8f72416b),
-including linked pages, toggles, and screenshots.
-
-The agent first lists what should be installed and what is already present.
-It then performs the requested setup with temporary scripts where practical,
-or Computer Use when needed. It flags renamed settings and suggests Notion
-corrections without editing Notion unless you ask.
-
-`chezmoi apply` only updates managed dotfiles. Package installation remains an
-explicit `brew bundle` step. There are no saved setup scripts or copied Notion
-extension lists in this repo.
-
-## App-specific setup
-
-`inshellisense`:
-
-`brew bundle` installs it from the `microsoft/inshellisense` tap. If you skipped
-`brew bundle`, install it directly:
-
-```bash
-brew tap microsoft/inshellisense https://github.com/microsoft/inshellisense
-brew install inshellisense
-```
-
-Then generate the shell resources once and check the setup. `dot_zshrc` already
-sources the zsh hook as its last line, and `chezmoi apply` installs the settings
-from `dot_config/inshellisense/rc.toml` (Nerd Font icons, Snazzy blue highlight,
-rounded box, alias expansion).
-
-```bash
-is init zsh
-is doctor
-```
-
-After `brew upgrade inshellisense`, run `is reinit`.
-
-`brew`:
-
-Setup Brew to upgrade all formulae and casks and run its `cleanup` command once a week.
-
-```bash
-brew autoupdate start 604800 --cleanup --upgrade
-```
-
-`claude-code`:
-
-Add `"outputStyle": "Concise"` to `~/.claude/settings.json`. Setting it in `/config` only saves it for the current project.
-
-Install my [Session Compass](https://github.com/tonywu71/session-compass) mod. It needs Claude Code 2.1.287 or later.
-
-```bash
-claude plugin marketplace add tonywu71/session-compass
-claude plugin install session-compass@tonywu71-mods
-```
-
-`github`:
-
-Login with `gh`:
-
-```bash
-gh auth login
-```
-
-Add an SSH key for GitHub to the `ssh-agent` using this [guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
-
-```bash
-ssh-keygen -t ed25519 -C "28306721+tonywu71@users.noreply.github.com"
-eval "$(ssh-agent -s)"
-touch ~/.ssh/config
-open ~/.ssh/config
-```
-
-Then append these lines:
-
-```ssh-config
-Host github.com
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_ed25519
-```
-
-And add the new key to the Apple Keychain (if applicable):
-
-```bash
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-```
-
-Following this [tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), add the newly created SSH key here: <https://github.com/settings/keys>.
-
-iTerm2 theme:
-
-`chezmoi apply` imports the [Snazzy](https://github.com/sindresorhus/iterm2-snazzy) color preset into iTerm2. Select it once in Settings → Profiles → Colors → Color Presets → Snazzy.
-
-Herdr:
-
-`brew bundle` installs Herdr.app with the `herdr-app` cask, and the app installs herdr-core (`hc`) itself. If Herdr.app was installed by hand in `~/Applications`, remove it first, or brew adds a second copy in `/Applications`. The `herdr` formula is the older terminal multiplexer, a separate tool. `chezmoi apply` sets up the same look as iTerm2:
-
-- `~/.config/herdr-app/themes/snazzy.json` holds the Snazzy colors, converted from the iTerm2 preset.
-- `~/.config/herdr-app/settings.json` gets `theme`, `font` (MesloLGS NF), `font_size` (13) and `font_weight` (400). Herdr also writes to this file, so chezmoi sets only these four keys and keeps the rest. Herdr's default weight is 500, which looks bolder than iTerm2. Size 13 in Herdr looks the same as size 14 in iTerm2.
-
-To change one of these keys, edit `dot_config/herdr-app/modify_settings.json`. It leaves the file untouched when the keys already match, so `chezmoi diff` stays clean after Herdr rewrites the file.
-
-A theme or text size picked in the Herdr UI is saved in `~/.config/herdr-app/layouts/.state/` and wins over `settings.json`. Don't edit `.state` by hand. To set the theme from a shell, run `herdr-app do app.theme --name snazzy`.
-
-`Cmd+W` asks before it closes a tab that has more than one pane. A tab with one pane closes at once, as before. Two files set this up:
-
-- `~/.config/herdr-app/mods/ask-close-tab/` is a small mod. It counts the panes in the focused tab. With one pane it closes the tab. With more, it opens Herdr's own `confirm` dialog, where Enter closes the tab and Esc cancels.
-- `~/.config/herdr-app/keys.json` gets `"cmd-w": "mod.open:ask-close-tab"`. Herdr writes this file too, so `dot_config/herdr-app/modify_keys.json` sets only this key and keeps the rest.
-
-On a new Mac, open Herdr once before `chezmoi apply`. Herdr writes its default `keys.json` on the first start. Until that file exists, chezmoi leaves it alone, because a file with only `Cmd+W` would replace all of Herdr's default shortcuts. Run `chezmoi apply` again after the first start to add the key.
-
-The × button on a tab and Close in its right-click menu still close without asking. Only `Cmd+W` goes through the mod. To turn it off, set `cmd-w` back to `tab.close` in `modify_keys.json`.
-
-Run `/herdr` in Claude Code to change Herdr with an agent.
-
-`tmux`:
-
-I run Claude Code sessions inside tmux with iTerm2's control mode, so the panes and sessions survive quitting iTerm2. `chezmoi apply` installs `~/.tmux.conf` and the `t` and `tp` aliases in `~/.aliases`.
-
-```bash
-t   # attach to the "main" session, or create it
-tp  # list every pane with its title and folder
-```
-
-- Quit iTerm2 with `Cmd+Q` to detach. `Cmd+W` on a tab kills that tmux window.
-- A reboot stops tmux. Run `claude --resume` in each worktree to get the conversations back.
-- After editing `~/.tmux.conf`, run `tmux source ~/.tmux.conf`. Restart Claude Code sessions to pick up the new environment.
-
-## Notes
-
-- Machine-specific configurations should be stored in `~/.extra`. If exists, this file will be automatically sourced.
-- More sensible data should be stored in `~/.env` and sourced only when necessary. If you want to store API keys, make sure to respect the *Principle of least privilege* when choosing the fine-grained permissions!
-- (Optional) Install Rosetta:
-
-    ```bash
-    softwareupdate --install-rosetta
-    ```
+In Claude Code, run `/macbook-setup` from this repo, or ask to set up your
+personal Mac. Other agents find the same skill through `AGENTS.md`. The skill
+reads the [MacBook Setup page in Notion](https://app.notion.com/p/tonywu71/MacBook-Setup-f1d68e10c55f4f479b72583c8f72416b),
+lists what is missing, and suggests Notion fixes without editing Notion unless
+you ask. `chezmoi apply` only updates dotfiles. Installing packages stays an
+explicit `brew bundle` step.
 
 ## Checks
-
-Check the shell configuration without executing it:
 
 ```bash
 zsh -n dot_zprofile
 zsh -n dot_zshrc
+chezmoi diff  # review before applying
 ```
 
-Use `chezmoi diff` to review the changes for the current Mac before applying.
-The agent must verify any setup commands separately during a setup session.
+<details>
+<summary>Notes: <code>~/.extra</code>, <code>~/.env</code>, Rosetta</summary>
+
+- Put machine-specific shell config in `~/.extra`. `.zshrc` sources it if it
+  exists.
+- Put secrets in `~/.env` and source it only when needed. Give API keys the
+  fewest permissions they need.
+- Install Rosetta if an app needs it:
+
+  ```bash
+  softwareupdate --install-rosetta
+  ```
+
+</details>

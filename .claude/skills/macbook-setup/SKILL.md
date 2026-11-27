@@ -13,7 +13,7 @@ instructions only. Create temporary scripts during a setup session when useful.
 
 Find the dotfiles repo from the current project or chezmoi source directory.
 The usual location is `~/code/personal/dotfiles`. Read its `AGENTS.md`,
-`README.md`, and `Brewfile`.
+`README.md`, `docs/`, and `Brewfile`.
 
 Read the personal Notion [MacBook Setup](https://app.notion.com/p/tonywu71/MacBook-Setup-f1d68e10c55f4f479b72583c8f72416b)
 page, including linked setup pages, nested toggles, screenshots, and relevant

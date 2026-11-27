@@ -8,3 +8,4 @@ Brewfile
 .zprofile
 .zshrc
 {{ end }}
+docs
