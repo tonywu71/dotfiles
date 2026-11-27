@@ -1,3 +1,9 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+[[ ! -d "$HOME/.docker/completions" ]] || fpath=("$HOME/.docker/completions" $fpath)
+
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 zstyle ':omz:update' mode reminder
@@ -29,6 +35,6 @@ if [[ -n ${brew_prefix:-} ]]; then
 fi
 
 # inshellisense must stay last (see its README).
-inshellisense_init="${XDG_DATA_HOME:-$HOME/.local/share}/inshellisense/zsh/init.zsh"
+inshellisense_init="${XDG_DATA_HOME:-$HOME/.local/share}/inshellisense/init/zsh/init.zsh"
 [[ -f "$inshellisense_init" ]] && source "$inshellisense_init"
 unset inshellisense_init
