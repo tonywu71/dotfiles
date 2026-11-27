@@ -80,16 +80,11 @@ chezmoi diff  # review before applying
 ```
 
 <details>
-<summary>Notes: <code>~/.extra</code>, <code>~/.env</code>, Rosetta</summary>
+<summary>Notes: <code>~/.extra</code>, <code>~/.env</code></summary>
 
 - Put machine-specific shell config in `~/.extra`. `.zshrc` sources it if it
   exists.
 - Put secrets in `~/.env` and source it only when needed. Give API keys the
   fewest permissions they need.
-- Install Rosetta if an app needs it:
-
-  ```bash
-  softwareupdate --install-rosetta
-  ```
 
 </details>
