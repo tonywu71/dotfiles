@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+# Takes effect after logging out and back in.
+defaults write NSGlobalDomain KeyRepeat -int 2
+{{ end -}}
