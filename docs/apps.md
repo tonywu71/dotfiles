@@ -22,6 +22,14 @@ background, while the `claude-code` cask needs `brew upgrade`:
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
+Then clone my [skills](https://github.com/tonywu71/skills) repo as
+`~/.claude/skills`, where Claude Code looks for user skills. chezmoi does not
+manage this folder, so update it with `git pull`:
+
+```bash
+git clone git@github.com:tonywu71/skills.git ~/.claude/skills
+```
+
 `chezmoi apply` sets the keys in `agents/claude-settings.json` in
 `~/.claude/settings.json`: output style, UI, permission mode, plugins, and
 plugin marketplaces. Other keys stay as they are, such as the model, hooks, and
