@@ -68,4 +68,20 @@ defaults write com.if.Amphetamine "Enable Session Notifications" -int 0
 defaults write com.if.Amphetamine "Hide Dock Icon" -int 1
 defaults write com.if.Amphetamine "Enable Statistics" -int 0
 defaults write com.if.Amphetamine "Show Welcome Window" -int 0
+
+# iTerm2: profile lives in DynamicProfiles/profiles.json; this GUID must match it.
+defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string 9EDFE602-0AC8-4D38-9BF2-43BAD39DDE87
+defaults write com.googlecode.iterm2 TmuxUsesDedicatedProfile -bool true
+defaults write com.googlecode.iterm2 TmuxSyncClipboard -bool true
+defaults write com.googlecode.iterm2 ClosingTmuxTabKillsTmuxWindows -bool true
+defaults write com.googlecode.iterm2 OpenTmuxWindowsIn -int 1
+defaults write com.googlecode.iterm2 TabStyleWithAutomaticOption -int 5
+defaults write com.googlecode.iterm2 HideTab -bool true
+defaults write com.googlecode.iterm2 ShowFullScreenTabBar -bool false
+defaults write com.googlecode.iterm2 CopySelection -bool false
+defaults write com.googlecode.iterm2 CommandSelection -bool true
+defaults write com.googlecode.iterm2 AllowClipboardAccess -bool true
+defaults write com.googlecode.iterm2 AlternateMouseScroll -bool true
+defaults write com.googlecode.iterm2 DisableWindowSizeSnap -bool true
+defaults write com.googlecode.iterm2 preferIntegratedGPU -bool true
 {{ end -}}

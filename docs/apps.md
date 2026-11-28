@@ -149,9 +149,13 @@ After `brew upgrade inshellisense`, run `is reinit`.
 
 ## iTerm2
 
-`chezmoi apply` imports the [Snazzy](https://github.com/sindresorhus/iterm2-snazzy)
-color preset into iTerm2. Select it once in Settings → Profiles → Colors →
-Color Presets → Snazzy.
+`chezmoi apply` installs a dynamic profile, `Dotfiles`, at
+`~/Library/Application Support/iTerm2/DynamicProfiles/profiles.json` and makes
+it the default. It holds the font, the
+[Snazzy](https://github.com/sindresorhus/iterm2-snazzy) colors, and the key
+mappings. iTerm2 Settings cannot edit a dynamic profile, so change the JSON
+instead. The global iTerm2 settings (tmux and tabs) are in
+`run_onchange_after_app-defaults.sh.tmpl`.
 
 ## tmux
 
