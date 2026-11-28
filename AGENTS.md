@@ -17,3 +17,8 @@ macOS dotfiles managed with [chezmoi](https://www.chezmoi.io/). `dot_<name>` ren
 - Personal setup requires `personal = true` on the target Mac. Keep work Macs
   at `personal = false` and preserve their shell files and settings.
 - Repo-only changes do not authorize setup on the current Mac.
+- This repo does not install agent skills. My own skills and the third-party
+  skills for Codex and Cursor (`setup-other-agents.sh`) live in the
+  [skills repo](https://github.com/tonywu71/skills), cloned at
+  `~/.claude/skills`. For any skills question or setup step that is missing
+  here, read `~/.claude/skills/README.md` first.

@@ -7,6 +7,7 @@ My macOS dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 | Personal vs work Macs, git email | [docs/machines.md](docs/machines.md)     |
 | Per-app setup                    | [docs/apps.md](docs/apps.md)             |
 | Agent-led Mac setup              | [macbook-setup skill](.claude/skills/macbook-setup/SKILL.md) |
+| Agent skills (Claude Code, Codex, Cursor) | [skills repo](https://github.com/tonywu71/skills) |
 
 ## 1. Install brew and chezmoi
 
