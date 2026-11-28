@@ -22,16 +22,21 @@ background, while the `claude-code` cask needs `brew upgrade`:
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-Add `"outputStyle": "Concise"` to `~/.claude/settings.json`. Setting it in
-`/config` only saves it for the current project.
+`chezmoi apply` sets the keys in `agents/claude-settings.json` in
+`~/.claude/settings.json`: output style, UI, permission mode, plugins, and
+plugin marketplaces. Other keys stay as they are, such as the model, hooks, and
+`autoMode`. My [Session Compass](https://github.com/tonywu71/session-compass)
+mod is one of the plugins and needs Claude Code 2.1.287 or later. If a plugin
+does not load on a new Mac, install it with `/plugin`.
 
-Install my [Session Compass](https://github.com/tonywu71/session-compass) mod.
-It needs Claude Code 2.1.287 or later.
-
-```bash
-claude plugin marketplace add tonywu71/session-compass
-claude plugin install session-compass@tonywu71-mods
-```
+> [!WARNING]
+> `chezmoi apply` replaces each top-level key as a whole, so `enabledPlugins`,
+> `extraKnownMarketplaces`, and `permissions` end up exactly as in the repo. A
+> plugin installed with `/plugin` but missing from
+> `agents/claude-settings.json` gets turned off on the next apply. This
+> matters most on a work Mac, which likely has extra work plugins. Never add
+> work plugins or marketplaces to the repo. Turn them back on with `/plugin`
+> after each apply instead.
 
 ## Codex
 

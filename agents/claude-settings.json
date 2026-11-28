@@ -1,0 +1,121 @@
+{
+  "outputStyle": "Concise",
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "voiceEnabled": true,
+  "terminalProgressBarEnabled": false,
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "autoMemoryEnabled": true,
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
+  "skipWorkflowUsageWarning": true,
+  "skipAutoPermissionPrompt": true,
+  "respondToBashCommands": false,
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "frontend-slides@frontend-slides": true,
+    "humanizer@humanizer": true,
+    "i-have-adhd@i-have-adhd": true,
+    "impeccable@impeccable": true,
+    "ponytail@ponytail": true,
+    "skypilot@skypilot": true,
+    "last30days@last30days-skill": true,
+    "diagram-design@diagram-design": true,
+    "avoid-ai-writing@conorbronsdon-skills": true,
+    "hyperframes@hyperframes": true,
+    "session-compass@tonywu71-mods": true,
+    "taste-skill@taste-skill": true,
+    "hf-cli@huggingface-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "frontend-slides": {
+      "source": {
+        "source": "github",
+        "repo": "zarazhangrui/frontend-slides"
+      }
+    },
+    "huggingface-skills": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/huggingface/skills.git"
+      }
+    },
+    "humanizer": {
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
+    },
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "skypilot": {
+      "source": {
+        "source": "github",
+        "repo": "skypilot-org/skypilot"
+      }
+    },
+    "last30days-skill": {
+      "source": {
+        "source": "github",
+        "repo": "mvanhorn/last30days-skill"
+      }
+    },
+    "diagram-design": {
+      "source": {
+        "source": "github",
+        "repo": "cathrynlavery/diagram-design"
+      }
+    },
+    "conorbronsdon-skills": {
+      "source": {
+        "source": "github",
+        "repo": "conorbronsdon/avoid-ai-writing"
+      }
+    },
+    "hyperframes": {
+      "source": {
+        "source": "github",
+        "repo": "heygen-com/hyperframes"
+      }
+    },
+    "tonywu71-mods": {
+      "source": {
+        "source": "github",
+        "repo": "tonywu71/session-compass"
+      }
+    },
+    "taste-skill": {
+      "source": {
+        "source": "github",
+        "repo": "Leonxlnx/taste-skill"
+      }
+    }
+  }
+}

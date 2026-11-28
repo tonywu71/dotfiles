@@ -1,0 +1,2 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- includeTemplate "editor-settings" (dict "stdin" .chezmoi.stdin "files" (list "agents/claude-settings.json")) -}}
