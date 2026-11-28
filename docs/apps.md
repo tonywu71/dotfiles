@@ -27,7 +27,7 @@ Then clone my [skills](https://github.com/tonywu71/skills) repo as
 manage this folder, so update it with `git pull`:
 
 ```bash
-git clone git@github.com:tonywu71/skills.git ~/.claude/skills
+git clone https://github.com/tonywu71/skills.git ~/.claude/skills
 ```
 
 `chezmoi apply` sets the keys in `agents/claude-settings.json` in
