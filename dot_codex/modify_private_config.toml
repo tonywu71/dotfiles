@@ -1,0 +1,19 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Codex rewrites config.toml itself, so set only the "Approve for me" keys and keep the rest. */ -}}
+{{- $wanted := dict "approval_policy" "on-request" "approvals_reviewer" "auto_review" "sandbox_mode" "workspace-write" -}}
+{{- $config := dict -}}
+{{- if trim .chezmoi.stdin -}}
+{{-   $config = fromToml .chezmoi.stdin -}}
+{{- end -}}
+{{- $changed := false -}}
+{{- range $key, $value := $wanted -}}
+{{-   if ne (toJson (index $config $key)) (toJson $value) -}}
+{{-     $changed = true -}}
+{{-     $_ := set $config $key $value -}}
+{{-   end -}}
+{{- end -}}
+{{- if $changed -}}
+{{-   toToml $config -}}
+{{- else -}}
+{{-   .chezmoi.stdin -}}
+{{- end -}}

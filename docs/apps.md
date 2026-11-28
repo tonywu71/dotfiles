@@ -44,6 +44,11 @@ Install with the `codex` cask from the Brewfile, not the install script. The
 script install only tells you about new versions and waits for `codex update`.
 The cask gets upgraded each week by brew autoupdate.
 
+`chezmoi apply` sets "Approve for me" as the default permission mode in
+`~/.codex/config.toml` (`approval_policy`, `approvals_reviewer`,
+`sandbox_mode`) and keeps every other key. It also links `~/.codex/AGENTS.md`
+to `~/.claude/CLAUDE.md`, so Codex reads the same instructions.
+
 ## GitHub
 
 Log in with `gh`:
