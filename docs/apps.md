@@ -57,6 +57,16 @@ The cask gets upgraded each week by brew autoupdate.
 `sandbox_mode`) and keeps every other key. It also links `~/.codex/AGENTS.md`
 to `~/.claude/CLAUDE.md`, so Codex reads the same instructions.
 
+Codex cannot use Claude Code plugins. After cloning the skills repo (see
+[Claude Code](#claude-code)), run its setup script to install the third-party
+skills, such as humanizer, into `~/.agents/skills` for Codex and Cursor. Run
+it again to update them. The skills repo README explains why you should not
+use `npx skills update`.
+
+```bash
+~/.claude/skills/setup-other-agents.sh
+```
+
 ## GitHub
 
 Log in with `gh`:
