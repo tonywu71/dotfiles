@@ -1,0 +1,71 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+# Quit each app before this runs, or it may overwrite the values on exit.
+# Maccy and Amphetamine are sandboxed: launch them once first so their
+# preference container exists.
+
+# Rectangle
+defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
+defaults write com.knollsoft.Rectangle hideMenubarIcon -bool true
+defaults write com.knollsoft.Rectangle subsequentExecutionMode -int 1
+defaults write com.knollsoft.Rectangle allowAnyShortcut -bool true
+defaults write com.knollsoft.Rectangle landscapeSnapAreas -string '[2,{"action":2},7,{"compound":-4},3,{"action":16},5,{"compound":-3},4,{"compound":-2},1,{"action":15},6,{"action":13},8,{"action":14}]'
+
+# Maccy
+defaults write org.p0deje.Maccy KeyboardShortcuts_popup -string '{"carbonModifiers":768,"carbonKeyCode":8}'
+defaults write org.p0deje.Maccy KeyboardShortcuts_pin -string '{"carbonModifiers":2048,"carbonKeyCode":35}'
+defaults write org.p0deje.Maccy KeyboardShortcuts_delete -string '{"carbonModifiers":2048,"carbonKeyCode":51}'
+defaults write org.p0deje.Maccy KeyboardShortcuts_togglePreview -string '{"carbonKeyCode":49,"carbonModifiers":4096}'
+defaults write org.p0deje.Maccy searchMode -string fuzzy
+defaults write org.p0deje.Maccy showInStatusBar -bool false
+
+# DockDoor
+defaults write com.ethanbills.DockDoor enableCmdTabEnhancements -bool true
+defaults write com.ethanbills.DockDoor openDelay -float 0.2
+defaults write com.ethanbills.DockDoor bufferFromDock -float -10
+defaults write com.ethanbills.DockDoor limitSwitcherToFrontmostApp -bool true
+defaults write com.ethanbills.DockDoor showMenuBarIcon -bool false
+
+# Typora
+defaults write abnerworks.Typora theme -string Github
+defaults write abnerworks.Typora darkTheme -string Github
+defaults write abnerworks.Typora useSeparateDarkTheme -bool true
+defaults write abnerworks.Typora enable_inline_math -bool true
+defaults write abnerworks.Typora strict_mode -bool true
+defaults write abnerworks.Typora copy_markdown_by_default -bool true
+defaults write abnerworks.Typora noHintForOpenLink -bool true
+
+# Stats: menu bar modules and widgets
+for module in CPU GPU RAM Network Sensors; do
+    defaults write eu.exelban.Stats "${module}_state" -bool true
+done
+for module in Battery Disk Remote; do
+    defaults write eu.exelban.Stats "${module}_state" -bool false
+done
+for module in CPU GPU RAM; do
+    defaults write eu.exelban.Stats "${module}_widget" -string bar_chart
+    defaults write eu.exelban.Stats "${module}_bar_chart_label" -bool true
+done
+defaults write eu.exelban.Stats RAM_bar_chart_box -bool true
+defaults write eu.exelban.Stats RAM_oneView -bool true
+defaults write eu.exelban.Stats Sensors_widget -string sensors
+defaults write eu.exelban.Stats "sensor_Average CPU" -bool true
+defaults write eu.exelban.Stats Network_speed_icon -string arrows
+defaults write eu.exelban.Stats Network_usageReset -string "Once per day"
+defaults write eu.exelban.Stats Network_widgetActivationThreshold -int 100
+defaults write eu.exelban.Stats dockIcon -bool false
+defaults write eu.exelban.Stats telemetry -bool false
+
+# Amphetamine: keep the display on during a session, allow lid-closed sleep
+defaults write com.if.Amphetamine "Allow Display Sleep" -int 0
+defaults write com.if.Amphetamine "Allow Screen Saver" -int 0
+defaults write com.if.Amphetamine "Allow Closed-Display Sleep" -int 1
+defaults write com.if.Amphetamine "Default Duration" -int 0
+defaults write com.if.Amphetamine "Start Session At Launch" -int 0
+defaults write com.if.Amphetamine "Start Session On Wake" -int 0
+defaults write com.if.Amphetamine "Enable Triggers" -int 0
+defaults write com.if.Amphetamine "Enable Session Notifications" -int 0
+defaults write com.if.Amphetamine "Hide Dock Icon" -int 1
+defaults write com.if.Amphetamine "Enable Statistics" -int 0
+defaults write com.if.Amphetamine "Show Welcome Window" -int 0
+{{ end -}}
